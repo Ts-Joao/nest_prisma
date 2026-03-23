@@ -1,0 +1,22 @@
+info:
+  name: Criando Task
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{api_url}}/tasks"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Retornar resposta adequada na criação",
+        "description": "Ajustar o endpoint POST para retornar status 201 e a tarefa criada"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

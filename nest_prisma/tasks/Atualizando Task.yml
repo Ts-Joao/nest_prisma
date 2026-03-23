@@ -1,0 +1,22 @@
+info:
+  name: Atualizando Task
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{api_url}}/tasks/2"
+  body:
+    type: json
+    data: |-
+      {
+        "conteudo": "Atualizando task",
+        "data_execucao": "20-02"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
