@@ -1,5 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Task } from './entities/task.entity';
+import { CreateTaskDto } from 'src/dto/create.task.dto';
+import { UpdateTaskDto } from 'src/dto/update.task.dto';
 
 @Injectable()
 export class TasksService {
@@ -80,30 +82,35 @@ export class TasksService {
         throw new HttpException('Task not found', 404)
     }
 
-    create(body: any) {
+    create(createTaskDto: CreateTaskDto) {
         const newId = this.tasks.length + 1;
         const newTask:Task = {
             id: newId,
             completed: false,
-            ...body
+            ...createTaskDto
         }
         this.tasks.push(newTask)
         return newTask
     }
 
-    update(id: string, body: any) {
+    update(id: string, updateTaskDto: UpdateTaskDto) {
         const taskIndex = this.tasks.findIndex(task => task.id === Number(id))
         if (taskIndex === -1)
             throw new HttpException('Tarefa não encontrada', HttpStatus.NOT_FOUND)
         const taskItem = this.tasks[taskIndex];
         this.tasks[taskIndex] = {
             ...taskItem,
-            ...body
+            ...updateTaskDto
         }
         return this.tasks[taskIndex]
     }
 
-    deleteTask(id: string) {
-        return 'Deletar a tarefa: ' + id
+    deleteTask(id: string) {	
+		const taskIndex = this.tasks.findIndex(task => task.id === Number(id));
+		if ( taskIndex === -1) {
+			throw new HttpException('Tarefa não encontrada', HttpStatus.NOT_FOUND);
+		}
+		this.tasks.splice(taskIndex, 1)
+		return ('Tarefa deletada com sucesso')
     }
 }
