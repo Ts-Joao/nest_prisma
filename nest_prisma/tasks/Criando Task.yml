@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "name": "Retornar resposta adequada na criação",
-        "description": "Ajustar o endpoint POST para retornar status 201 e a tarefa criada"
+        "name": "valida campo",
+        "description": "teste de validação de campo"
       }
   auth: inherit
 
