@@ -12,17 +12,19 @@ import {
     Query 
 } from '@nestjs/common';
 import { UpdateTaskDto } from 'src/tasks/dto/update.task.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 @Controller('tasks')
 export class TasksController {
     constructor(private readonly TasksService: TasksService) {}
     @Get()
-    getTasks() {
-        return this.TasksService.listAllTasks();
+    getTasks(@Query() paginationDto :PaginationDto) {
+        console.log(paginationDto)
+        return this.TasksService.listAllTasks(paginationDto);
     }
 
     @Get('/busca')
-    findTaskByQuery(@Query() queryParams: any) {
-        return this.TasksService.listAllTasks()
+    findTaskByQuery(@Query() paginationDto: PaginationDto) {
+        return this.TasksService.listAllTasks(paginationDto)
     }
 
     @Get(':id')
