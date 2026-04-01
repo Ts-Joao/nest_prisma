@@ -2,7 +2,7 @@ import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nes
 import { Observable, tap } from "rxjs";
 
 @Injectable()
-export class LoggerInterceptor implements NestInterceptor {
+export class BodyCreaeteTaskInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> {
         const request = context.switchToHttp().getRequest()
         const method = request.method

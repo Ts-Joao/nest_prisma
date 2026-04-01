@@ -54,6 +54,7 @@ export class TasksService {
           description: createTaskDto.description,
         },
       });
+      return newTask;
     } catch (error) {}
   }
 
