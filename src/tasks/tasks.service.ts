@@ -33,12 +33,18 @@ export class TasksService {
 
   async FindOneTask(id: number) {
     try {
-      const task = this.databaseService.task.findUnique({
+      const task = await this.databaseService.task.findUnique({
         where: { id },
-      });
+      })
 
-      return task;
+      if (!task) {
+        throw new HttpException('Tarefa não encontrada',
+          HttpStatus.NOT_FOUND);
+      }
+
+      return task
     } catch (error) {
+      if (error instanceof HttpException) throw error;
       throw new HttpException(
         'Erro ao buscar tarefa por ID',
         HttpStatus.INTERNAL_SERVER_ERROR,
