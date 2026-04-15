@@ -1,5 +1,10 @@
 import { CreateTaskDto } from 'src/tasks/dto/create.task.dto';
 import { TasksService } from './tasks.service';
+import { UpdateTaskDto } from 'src/tasks/dto/update.task.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { LoggerInterceptor } from 'src/common/interceptors/logger.interceptor';
+import { BodyCreaeteTaskInterceptor } from 'src/common/interceptors/body-create.task.interceptor';
+import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
 import { 
     Body,
     Controller,
@@ -12,11 +17,6 @@ import {
     Query, 
     UseInterceptors
 } from '@nestjs/common';
-import { UpdateTaskDto } from 'src/tasks/dto/update.task.dto';
-import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { LoggerInterceptor } from 'src/common/interceptors/logger.interceptor';
-import { BodyCreaeteTaskInterceptor } from 'src/common/interceptors/body-create.task.interceptor';
-import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
 
 @Controller('tasks')
 export class TasksController {
