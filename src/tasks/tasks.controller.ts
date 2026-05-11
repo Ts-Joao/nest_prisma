@@ -15,10 +15,13 @@ import {
     Post,
     Put,
     Query, 
+    UseGuards, 
     UseInterceptors
 } from '@nestjs/common';
+import { AuthAdminGuard } from 'src/common/guards/admin.guard';
 
 @Controller('tasks')
+@UseGuards(AuthAdminGuard)
 export class TasksController {
     constructor(private readonly TasksService: TasksService) {}
 
