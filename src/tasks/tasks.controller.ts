@@ -19,11 +19,15 @@ import {
     UseInterceptors
 } from '@nestjs/common';
 import { AuthAdminGuard } from 'src/common/guards/admin.guard';
+import { TasksUtils } from './tasks.utils';
 
 @Controller('tasks')
 @UseGuards(AuthAdminGuard)
 export class TasksController {
-    constructor(private readonly TasksService: TasksService) {}
+    constructor(
+        private readonly TasksService: TasksService,
+        private readonly tasksUtils: TasksUtils
+    ) {}
 
     @Get()
     @UseInterceptors(LoggerInterceptor)
