@@ -1,12 +1,22 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { LoggerMiddleware } from './../common/middlewares/logger.middleware';
 import { TasksModule } from 'src/tasks/tasks.module';
 import { UsersModule } from 'src/users/users.module';
-import { LoggerMiddleware } from './../common/middlewares/logger.middleware';
+import { AuthModule } from 'src/auth/auth.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod
+} from '@nestjs/common';
 
 @Module({
-  imports: [TasksModule, UsersModule],
+  imports: [
+    TasksModule,
+    UsersModule,
+    AuthModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
